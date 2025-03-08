@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    container_name: nest-postgres-db
+    ports:
+      - '5431:5432'
+    environment:
+      POSTGRES_DB: underground
+      POSTGRES_USER: underground
+      POSTGRES_PASSWORD: kilofkuby
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: nest-app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: underground
+      POSTGRES_PASSWORD: kilofkuby
+      POSTGRES_DB: underground
+
+volumes:
+  dbdata:
