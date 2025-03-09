@@ -20,6 +20,9 @@ export class Grave {
   @Column()
   longitude: string;
 
+  @Column()
+  description: string;
+
   @ManyToOne(() => Cemetery, (cemeteries) => cemeteries.graves)
   cemetery: Cemetery;
 
