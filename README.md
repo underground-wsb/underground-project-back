@@ -1,73 +1,106 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Prerequisities
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Operating system
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This guide is for linux and/or for WSL,
+Configuration on pure Windows will need additional steps
 
-## Description
+## Installing git
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+`sudo apt-get update`
 
-## Installation
+`sudo apt-get install git -y`
 
-```bash
-$ npm install
-```
+`git config --global user.name "Your Name"`
 
-## Running the app
+`git config --global user.email "your.email@example.com"`
 
-```bash
-# development
-$ npm run start
+## Adding ssh key
 
-# watch mode
-$ npm run start:dev
+This step is optional but recommended - so you can use ssh for cloning / pushing
 
-# production mode
-$ npm run start:prod
-```
+1. Generate key
 
-## Test
+`ssh-keygen -t ed25519 -C "your.email@example.com"`
 
-```bash
-# unit tests
-$ npm run test
+2. Display generated key
 
-# e2e tests
-$ npm run test:e2e
+`cat ~/.ssh/id_ed25519.pub`
 
-# test coverage
-$ npm run test:cov
-```
+3. Copy it
+4. Paste into github page
 
-## Support
+- click on profile image
+- select settings
+- go to SSH and GPG keys
+- new SSH key
+- name it as you like
+- paste copied data
+- click Add Key
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+5. update remote, change username and repo to proper values
 
-## Stay in touch
+`git remote set-url origin git@github.com:<username>/<repo>.git`
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Connecting VS Code to wsl (optional)
 
-## License
+If you're using both wsl instead of casual linux and VS code
 
-Nest is [MIT licensed](LICENSE).
+Alternatively to the following, you can just install VS code inside WSL
+
+1. open VS Code
+
+2. go to extensions tab on the left
+3. search for, and install `Remote-WSL`
+
+To run remote project, pick `F1` and type `Remote-WSL: New Window or Remote-WSL: Reopen Folder in WSL`
+
+## Installing node.js
+
+`sudo apt-get update`
+
+`curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -`
+
+`sudo apt-get install -y nodejs`
+
+## Installing docker
+
+If following section will require you to install docker separately, please do on your own
+
+For easier usage, you may set up docker as you system user group, so you won't need to use sudo to run docker compose, by following docker documentation, but it's not required
+
+## Installing docker compose
+
+Dont mess it with docker-compose as now docker compose is the plugin for docker, not standalone program.
+
+`sudo apt-get update`
+
+`sudo apt-get install ca-certificates curl gnupg lsb-release`
+
+<pre> bash sudo mkdir -p /etc/apt/keyrings curl -fsSL https://download.docker.com/linux/ubuntu/gpg \ | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg echo \ "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \ https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) stable" \ | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null </pre>
+
+`sudo apt-get update`
+
+`sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`
+
+# Setup
+
+## Cloning repo
+
+`git clone git@github.com:underground-wsb/underground-project-back.git`
+
+## Installing dependencies
+
+In repository forlder (underground-project-back)
+
+`npm install`
+
+## Building containers
+
+`sudo docker compose up --build`
+
+# Running application
+
+## Runing docker containers
+
+`sudo docker compose up`
