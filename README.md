@@ -107,3 +107,75 @@ In repository forlder (underground-project-back)
 
 # Windows setup
 
+
+# Install Git
+
+ Download the Git installer from https://git-scm.com/download/win
+
+ Run the installer and follow the instructions (default options are sufficient)
+
+ After installation, check the Git version
+
+git --version
+
+# Install Node.js
+
+ Download the Node.js installer from https://nodejs.org/
+
+ Choose the LTS version and run the installer
+
+ After installation, check the versions of Node.js and npm
+
+node -v
+
+npm -v
+
+# Install Docker Desktop
+
+ Download the Docker Desktop installer from https://www.docker.com/products/docker-desktop
+
+ Run the installer and follow the instructions
+
+ After installation, launch Docker Desktop from the Start menu
+
+ Optional: Configure Docker to work without using sudo (refer to Docker documentation)
+
+# Fix PowerShell script execution error
+
+ Open PowerShell as Administrator
+
+ Enter the following command to allow script execution
+
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+ Confirm the change by typing 'Y' and pressing Enter
+
+# Configure Docker Compose
+
+ Docker Compose is already installed with Docker Desktop
+
+ Check the Docker Compose version
+
+docker compose version
+
+# Remove deprecated version from docker-compose.yml file
+
+ Remove the `version` line from the docker-compose.yml file to avoid warnings
+
+# Switch Docker to Linux Containers
+
+ Open Docker Desktop and ensure it's set to Linux Containers mode
+
+ If not, switch to Linux Containers via PowerShell (run as Administrator)
+
+& 'C:\Program Files\Docker\Docker\DockerCli.exe' -SwitchLinuxEngine
+
+# Check Docker status
+
+docker info
+
+Ensure the output shows: OSType: linux
+
+# Run your project with Docker Compose
+
+docker compose up --build
