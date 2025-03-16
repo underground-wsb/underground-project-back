@@ -104,3 +104,6 @@ In repository forlder (underground-project-back)
 ## Runing docker containers
 
 `sudo docker compose up`
+
+# Windows setup
+
