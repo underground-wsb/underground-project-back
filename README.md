@@ -116,7 +116,7 @@ In repository forlder (underground-project-back)
 
  After installation, check the Git version
 
-git --version
+`git --version`
 
 # Install Node.js
 
@@ -126,9 +126,9 @@ git --version
 
  After installation, check the versions of Node.js and npm
 
-node -v
+`node -v`
 
-npm -v
+`npm -v`
 
 # Install Docker Desktop
 
@@ -148,7 +148,7 @@ npm -v
 
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
- Confirm the change by typing 'Y' and pressing Enter
+ Confirm the change by typing `Y` and pressing Enter
 
 # Configure Docker Compose
 
@@ -156,7 +156,7 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
  Check the Docker Compose version
 
-docker compose version
+`docker compose version`
 
 # Remove deprecated version from docker-compose.yml file
 
@@ -172,10 +172,10 @@ docker compose version
 
 # Check Docker status
 
-docker info
+`docker info`
 
 Ensure the output shows: OSType: linux
 
 # Run your project with Docker Compose
 
-docker compose up --build
+`docker compose up --build`
